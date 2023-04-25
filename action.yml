@@ -13,7 +13,7 @@ inputs:
     description: 'The continuous integration command to determine mergeability.'
   merge_strategy:
     required: true
-    description: 'The merging strategy to use after continous integration. Can be either squash or merge.'
+    description: 'The merging strategy to use after continous integration. Can be either merge, squash or rebase.'
   tag:
     required: false
     description: 'Whether or not to tag after merging.'
