@@ -26,6 +26,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - if: ${{ github.event_name == 'pull_request'}}
+    - if: ${{ github.event_name == 'pull_request' && github.actor == 'prulloac'}}
       run: echo "${{github.actor}}"
       shell: bash
