@@ -9,11 +9,12 @@ inputs:
     required: true
     description: 'The GitHub token to use for making API requests.'
   ci_command:
-    required: true
+    required: false
     description: 'The continuous integration command to determine mergeability.'
   merge_strategy:
-    required: true
+    required: false
     description: 'The merging strategy to use after continous integration. Can be either merge, squash or rebase.'
+    default: 'merge'
   tag:
     required: false
     description: 'Whether or not to tag after merging.'
@@ -23,5 +24,9 @@ inputs:
     description: 'Whether or not to make a new release after merging.'
     default: false
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v2
+    - if: ${{ github.event_name == 'pull_request' && github.actor == 'prulloac'}}
+      run: echo "Hi!"
+      shell: bash
