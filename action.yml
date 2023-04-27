@@ -30,5 +30,5 @@ runs:
       run: echo "${{github.actor}}"
       shell: bash
     - if: ${{ inputs.ci_command }}
-      run: "$(${{inputs.ci_command}})"
+      run: "${{inputs.ci_command}}"
       shell: bash
