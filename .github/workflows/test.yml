@@ -20,4 +20,4 @@ jobs:
           - uses: ./
             with:
                 token: ${{secrets.GITHUB_TOKEN}}
-                ci_command: "npm version"
+                ci_command: "echo 'hi'"
