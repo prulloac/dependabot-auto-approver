@@ -26,7 +26,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: actions/checkout@v2
     - if: ${{ github.event_name == 'pull_request' && github.actor == 'prulloac'}}
       run: echo "Hi!"
       shell: bash
