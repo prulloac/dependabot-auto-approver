@@ -29,3 +29,6 @@ runs:
     - if: ${{ github.event_name == 'pull_request' && github.actor == 'prulloac'}}
       run: echo "${{github.actor}}"
       shell: bash
+    - if: ${{ inputs.ci_command }}
+      run: sh "${{inputs.ci_command}}"
+      shell: bash
