@@ -1,0 +1,23 @@
+name: 'Dependabot autp approve'
+on: # rebuild any PRs and main branch changes
+    pull_request:
+        types:
+            [opened, reopened, edited, synchronize]
+        branches:
+          - main
+          - 'development'
+
+jobs:
+    auto_approver: # name of the job. Jobs run in parallel unless specified otherwise.
+        name: "DependaBot auto approve"
+        permissions:
+            pull-requests: write
+            issues: write
+            contents: read
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - uses: ./
+            with:
+                token: ${{secrets.GITHUB_TOKEN}}
+                ci_command: "echo 'hi'"

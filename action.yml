@@ -1,0 +1,34 @@
+name: 'Dependabot auto approver'
+description: 'Auto approves and merges dependabot commits if they succeed at a specified command.'
+author: 'prulloac'
+branding:
+  icon: bookmark
+  color: blue
+inputs:
+  token:
+    required: true
+    description: 'The GitHub token to use for making API requests.'
+  ci_command:
+    required: false
+    description: 'The continuous integration command to determine mergeability.'
+  merge_strategy:
+    required: false
+    description: 'The merging strategy to use after continous integration. Can be either merge, squash or rebase.'
+    default: 'merge'
+  tag:
+    required: false
+    description: 'Whether or not to tag after merging.'
+    default: false
+  release:
+    required: false
+    description: 'Whether or not to make a new release after merging.'
+    default: false
+runs:
+  using: 'composite'
+  steps:
+    - if: ${{ github.event_name == 'pull_request' && github.actor == 'prulloac'}}
+      run: echo "${{github.actor}}"
+      shell: bash
+    - if: ${{ inputs.ci_command }}
+      run: "${{inputs.ci_command}}"
+      shell: bash
